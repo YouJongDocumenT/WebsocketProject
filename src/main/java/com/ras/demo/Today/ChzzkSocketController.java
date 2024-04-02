@@ -38,6 +38,8 @@ public class ChzzkSocketController {
     @GetMapping("/sendChzzkSochet")
     public void SendConnetionChzzkSochet() throws Exception{
 
+        MyChzzkWebSocketHandler toSid = new MyChzzkWebSocketHandler();
+
         System.out.print("치지직 URL : ");
         String url = scanner.next();
 
@@ -110,6 +112,7 @@ public class ChzzkSocketController {
                         "    \"ver\": \"2\",\n" +
                         "    \"cmd\": 10000\n" +
                         "}";
+
 
                 System.out.println(session.isOpen());
 

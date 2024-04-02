@@ -14,38 +14,41 @@ import java.util.Map;
 
 public class MyChzzkWebSocketHandler extends TextWebSocketHandler {
 
-    String sid;
+    static String sid;
 
     @Override
     protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) {
 
     }
 
-    static boolean handShakeFlag = false;
+    static boolean handShakeFlag = true;
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         super.handleTextMessage(session, message);
         System.out.println("Received message from server: " + message.getPayload());
 
-//        if (handShakeFlag) {
-//            JSONParser parser = new JSONParser();
-//            Object obj = parser.parse(message.getPayload());
-//            JSONObject jsonObj = (JSONObject) obj;
-//            String tempSid = jsonObj.get("sid").toString();
-//            System.out.println("sid 출력 테스트 : " + tempSid);
-//            setSid(tempSid);
-//
-//            if(tempSid != null){
-//                handShakeFlag = false;
-//            }
+        // sid를 받아오기 전 까지 실행
+        if (handShakeFlag) {
+            // JSON의 bdy 속성을 파싱 후 sid 값 추출
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(message.getPayload());
+            JSONObject jsonObj = (JSONObject) obj;
+
+            JSONObject bdyObj = (JSONObject) jsonObj.get("bdy");
+
+            setSid(bdyObj.get("sid").toString());
+            if (bdyObj.get("sid") != null) {
+                handShakeFlag = false;
+            }
 
         }
+    }
 
-//    public String getSid() {
-//        return sid;
-//    }
-//
-//    public void setSid(String sid) {
-//        this.sid = sid;
-//    }
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
 }
