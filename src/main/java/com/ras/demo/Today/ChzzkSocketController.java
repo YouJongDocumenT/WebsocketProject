@@ -70,27 +70,26 @@ public class ChzzkSocketController {
 
                 String jsonData = "{\n" +
                         "    \"ver\": \"2\",\n" +
+                        "    \"cmd\": 100,\n" +
                         "    \"svcid\": \"game\",\n" +
                         "    \"cid\": \"" + channelId + "\",\n" +
-                        "    \"cmd\": 100,\n" +
-                        "    \"tid\": 1\n" +
                         "    \"bdy\": {\n" +
-                        "        \"uid\": \"" + userId + "\",\n" +
+                        "        \"uid\": \""+ userId +"\",\n" +
                         "        \"devType\": 2001,\n" +
-                        "        \"accTkn\": \"" + accessToken + "\",\n" +
+                        "        \"accTkn\": \""+accessToken+"\",\n" +
                         "        \"auth\": \"SEND\"\n" +
                         "    },\n" +
+                        "    \"tid\": 1\n" +
                         "}";
                 // JSON 문자열 파싱
-
                 // 루트 레벨의 값을 추출
 
                 session.sendMessage(new TextMessage(jsonData));
-                System.out.println("sendMessage : "+ jsonData);
+                //System.out.println("sendMessage : "+ jsonData);
                 //self.sid = sock_response['bdy']['sid']
 
                 System.out.println(" [ "+channelName+" ] 채팅창에 연결중 ... ");
-
+/*
                 String jsonData_2 = "{\n" +
                         "    \"ver\": \"2\",\n" +
                         "    \"svcid\": \"game\",\n" +
@@ -102,6 +101,8 @@ public class ChzzkSocketController {
                         "        \"recentMessageCount\": 50,\n" +
                         "    },\n" +
                         "}";
+*/
+                //System.out.println(" [ "+channelName+" ] 채팅창에 연결중 ... ");
 
 
 
@@ -109,7 +110,6 @@ public class ChzzkSocketController {
                         "    \"ver\": \"2\",\n" +
                         "    \"cmd\": 10000\n" +
                         "}";
-                System.out.println("주기적 핑 패킷 전송: " + PING_PACKET);
 
                 System.out.println(session.isOpen());
 
