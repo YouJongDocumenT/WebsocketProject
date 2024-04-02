@@ -1,5 +1,7 @@
 package com.ras.demo.Today;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +40,7 @@ public class ChzzkSocketController {
     @GetMapping("/sendChzzkSochet")
     public void SendConnetionChzzkSochet() throws Exception{
 
+        // https://chzzk.naver.com/live/7ce8032370ac5121dcabce7bad375ced
         System.out.print("치지직 URL : ");
         String url = scanner.next();
 
