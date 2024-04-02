@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .log-entry {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .log-entry > div {
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Log Data</h1>
+<div id="logData">
+    <!-- 로그 데이터를 서버로부터 직접 주입받아서 렌더링 -->
+    <div th:each="log : ${logs}">
+        <div class="log-entry">
+            <div>[ 아프리카 ]</div>
+            <div th:text="' ' + ${log.nickname}"></div>
+            <div th:text="' ' + ${log.starCount} + '개'"></div>
+            <div th:text="' ' + ${log.timeStamp}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
