@@ -1,11 +1,14 @@
 package com.ras.demo.Today;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 public class MyChzzkWebSocketHandler extends TextWebSocketHandler {
 
@@ -19,4 +22,5 @@ public class MyChzzkWebSocketHandler extends TextWebSocketHandler {
         super.handleTextMessage(session, message);
         System.out.println("Received message from server: " + message.getPayload());
     }
+
 }
