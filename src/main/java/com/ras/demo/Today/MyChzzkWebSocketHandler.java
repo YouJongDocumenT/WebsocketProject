@@ -31,7 +31,7 @@ public class MyChzzkWebSocketHandler extends TextWebSocketHandler {
         System.out.println("cmd 값: " + cmdValue);
 
         // "bdy" 객체 추출
-        JSONObject bdyObject = (JSONObject) jsonObject.get("bdy");
+        JSONArray bdyArray = (JSONArray) jsonObject.get("bdy");
 
 
 
