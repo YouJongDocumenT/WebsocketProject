@@ -1,6 +1,6 @@
-package com.ras.demo.crawlFunc;
+package com.ras.demo.Websocket.AfreecaTV;
 
-import com.ras.demo.crawlFunc.WebSocketClientApp;
+import com.ras.demo.Websocket.AfreecaTV.Service.WebSocketClientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -8,16 +8,16 @@ import java.util.Scanner;
 
 
 @Controller
-public class AfreecaTV_Crwal_Controller {
+public class AfreecaTVSocketController {
 
-    private final WebSocketClientApp wapp;
+    private final WebSocketClientService wapp;
     Scanner scanner = new Scanner(System.in);
 
-    public AfreecaTV_Crwal_Controller(WebSocketClientApp wapp) {
+    public AfreecaTVSocketController(WebSocketClientService wapp) {
         this.wapp = wapp;
     }
 
-    @GetMapping("AfcCrawlApi")
+    @GetMapping("sendAfreecaSochet")
     public String AfcCrawlApi() throws Exception {
 
         System.out.print("아프리카TV url : ");

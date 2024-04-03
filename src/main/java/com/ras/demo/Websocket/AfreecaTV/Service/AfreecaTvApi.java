@@ -1,4 +1,4 @@
-package com.ras.demo.crawlFunc;
+package com.ras.demo.Websocket.AfreecaTV.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

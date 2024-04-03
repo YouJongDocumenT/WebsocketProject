@@ -1,4 +1,4 @@
-package com.ras.demo.Today;
+package com.ras.demo.Websocket.Chzzk.Handler;
 
 
 import org.json.simple.JSONArray;
@@ -41,6 +41,18 @@ public class MyChzzkWebSocketHandler extends TextWebSocketHandler {
             jsonObject = (JSONObject) parser.parse(message.getPayload());
 
             cmdValue = (Long) jsonObject.get("cmd");
+
+            if (cmdValue == 0) {
+                System.out.println("Ping : " + cmdValue);
+
+                String PingPongJson = "{\n" +
+                        "    \"ver\": \"2\",\n" +
+                        "    \"cmd\": 10000\n" +
+                        "}";
+                session.sendMessage(new TextMessage(PingPongJson));
+
+                System.out.println("Pong : " + PingPongJson);
+            }
 
             if (cmdValue == 93101) {
                 TypeChat = "채팅";

@@ -4,8 +4,6 @@ import com.ras.demo.dto.Afreecatv_BJName;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-
-import java.util.Date;
 @Mapper
 @Repository
 public interface AfreecatvDonationMapper {

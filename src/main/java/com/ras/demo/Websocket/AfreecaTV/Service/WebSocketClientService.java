@@ -1,7 +1,8 @@
-package com.ras.demo.crawlFunc;
+package com.ras.demo.Websocket.AfreecaTV.Service;
 
 
-import com.ras.demo.controller.AfreecatvBJname;
+import com.ras.demo.Websocket.AfreecaTV.Handler.MyWebSocketHandler;
+import com.ras.demo.Websocket.AfreecaTV.Handler.SSLContextCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
@@ -13,12 +14,12 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import java.util.Map;
 
 @Service
-public class WebSocketClientApp {
+public class WebSocketClientService {
     private final ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
-    private static final Logger logger = LoggerFactory.getLogger(WebSocketClientApp.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebSocketClientService.class);
     private final AfreecaTvApi afcAPI;
 
-    public WebSocketClientApp(AfreecaTvApi afcAPI) {
+    public WebSocketClientService(AfreecaTvApi afcAPI) {
         this.afcAPI = afcAPI;
     }
 
@@ -98,7 +99,7 @@ public class WebSocketClientApp {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }, 30000); // 60초마다 핑
+                }, 60000); // 60초마다 핑
             }
 
 

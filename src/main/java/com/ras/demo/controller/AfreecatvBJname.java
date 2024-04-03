@@ -1,7 +1,5 @@
 package com.ras.demo.controller;
 
-import com.ras.demo.dto.AFCLog;
-import com.ras.demo.dto.Afreecatv_BJName;
 import com.ras.demo.service.AfreecatvDonationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.ras.demo.crawlFunc;
+package com.ras.demo.Websocket.AfreecaTV.Handler;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;

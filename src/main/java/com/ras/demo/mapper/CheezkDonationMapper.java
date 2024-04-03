@@ -1,6 +1,5 @@
 package com.ras.demo.mapper;
 
-import com.ras.demo.dto.Afreecatv_BJName;
 import com.ras.demo.dto.Cheezk_STName;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

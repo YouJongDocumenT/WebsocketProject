@@ -1,6 +1,5 @@
-package com.ras.demo.packitTest;
+package com.ras.demo.WebPackitTest;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class WebSocketMessageProcessor {

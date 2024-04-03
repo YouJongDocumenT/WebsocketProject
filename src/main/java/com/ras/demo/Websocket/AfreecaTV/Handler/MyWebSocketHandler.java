@@ -1,7 +1,5 @@
-package com.ras.demo.crawlFunc;
+package com.ras.demo.Websocket.AfreecaTV.Handler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import org.springframework.web.socket.TextMessage;
@@ -10,6 +8,8 @@ import org.springframework.web.socket.WebSocketSession;
 import java.nio.charset.StandardCharsets;
 
 public class MyWebSocketHandler extends TextWebSocketHandler {
+
+    int sum = 0;
 
     @Override
     protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) {
@@ -20,8 +20,6 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
 
         // 메시지를 \x0c 기준으로 나눕니다.
         String[] messages = new String(bytes, StandardCharsets.UTF_8).split("\u000c");
-
-
 
         // GwkwMDE4 : esc0018
         // GwkwMDA1 : esc0005
@@ -42,7 +40,6 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
             }
             */
             if(messages[0].substring(2, 6).equals("0018")){
-                System.out.println(message);
 
                 /*
                 for(int i = 0; i <= 11; i++){
@@ -54,12 +51,16 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
                 String userid = messages[2];
                 String usernick = messages[3];
                 String count = messages[4];
-                String etc = messages[11];
+                //String etc = messages[11];
 
                 // 메시지 출력
                 System.out.println(SEPARATOR);
-                System.out.println("| " + usernick + "[" + userid + "] - " + "[별풍선] " + count + " 개" + " - [tts] - " +etc);
+                System.out.println("| " + "   [닉네임] " + usernick + " ( " + userid + " ) - " + "[별풍선] " + count + " 개");
                 System.out.println(messages[0].substring(0, 6));
+
+                sum = sum + Integer.parseInt(count);
+                System.out.println(" [ 누적 별풍선 개수 ] " + sum + " 개");
+
             }
 
         } else {
