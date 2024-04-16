@@ -5,7 +5,7 @@
 
     <select id="selectByDate" resultType="com.ras.demo.dto.Cheezk_STName">
         SELECT MAX(donationDate) AS MostRecentDonationDate
-        FROM chk_donation;
+        FROM chk_donation
     </select>
 
     <insert id="insert">

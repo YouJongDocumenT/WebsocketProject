@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ras.demo.mapper.GeometryMapper">
+
+    <select id="selectGeometry" resultType="com.ras.demo.dto.geoJSON">
+        select ST_AsGeoJSON(Rectangle) as Rectangle from geometry
+        where idGeometry = 1
+    </select>
+
+    <select id="selectSellingGeometry" resultType="com.ras.demo.dto.SellingGeoJSON">
+        select ST_AsGeoJSON(Rectangle) as Rectangle from selling
+        where originId = 1
+    </select>
+
+
+</mapper>
