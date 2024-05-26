@@ -6,6 +6,7 @@ import com.ras.demo.service.AfreecaBjListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -19,15 +20,38 @@ public class AfreecaBjListAPI {
     @Autowired
     private AfreecaBjListService afreecaBjListService;
 
-//    @PostMapping("/create")
-//    public Mono<String> createBjs() {
-//        return afreecaBjListService.saveBjsFromRemote();
-//    }
-
-    @PostMapping("/send")
+    @GetMapping("/send")
     public String sendPostRequest() throws JsonProcessingException {
-        String url = "https://afevent2.afreecatv.com/app/rank/api.php?szWhich=viewer&nPage=1&szSearch=&szGender=A";
+        for(int pageNum = 1; pageNum<166; pageNum++) {
+            String url = "https://afevent2.afreecatv.com/app/rank/api.php?szWhich=viewer&nPage="+pageNum+"&szSearch=&szGender=A";
 //        afreecaBjListService.processBjData(afreecaBjListService.postDataToExternalApi(url));
-        return afreecaBjListService.postDataToExternalApi(url);
+            System.out.println(url);
+
+            try {
+                afreecaBjListService.postDataToExternalApi(url);
+            } catch (DataIntegrityViolationException ex) {
+                // MySQL Duplicate Entry 에러에 대한 처리
+            }
+        }
+        return "Success bjList Insert to DB";
     }
+
+    @GetMapping("/bjInfo")
+    public int getBjInfo() throws JsonProcessingException {
+        int nullCnt = afreecaBjListService.returnBroadNoIsNull();
+        int nullCntBatch = (int) Math.ceil(nullCnt*0.01);
+        System.out.println(nullCntBatch);
+        String bjId = "devil0108";
+
+        String url = "https://bjapi.afreecatv.com/api/"+bjId+"/station";
+        int result = afreecaBjListService.urlTestMethod(url);
+        System.out.println(result);
+        return result;
+    }
+
+    @GetMapping("/update")
+    public void scheduleUpdateBroadNoBatch() throws JsonProcessingException {
+        afreecaBjListService.updateBroadNoBatch();
+    }
+
 }

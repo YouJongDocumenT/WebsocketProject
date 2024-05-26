@@ -3,10 +3,34 @@
 
 <mapper namespace="com.ras.demo.mapper.AfreecaBjMapper">
     <insert id="insertBjInfos" parameterType="list">
-        INSERT INTO bjlist (bjId, bjNick, totalRank) VALUES
+        <if test="list != null and !list.isEmpty()">
+        INSERT INTO bjlist (bjId, bjNick, totalRank)
+        VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.bjId}, #{item.bjNick}, #{item.totalRank})
         </foreach>
+        ON DUPLICATE KEY UPDATE
+        bjNick = VALUES(bjNick),
+        totalRank = VALUES(totalRank)
+        </if>
     </insert>
+    
+    <select id="returnBroadNoIsNull">
+        SELECT count(*) as nullCnt FROM bjlist
+        where broadNo is null
+    </select>
+
+    <select id="selectNullBroadNo" resultType="java.lang.String">
+        SELECT bjId
+        FROM bjlist
+        WHERE broadNo IS NULL
+        LIMIT 100
+    </select>
+
+    <update id="updateBroadNo">
+        UPDATE bjlist
+        SET broadNo = #{broadNo}
+        WHERE bjId = #{bjId}
+    </update>
 
 </mapper>

@@ -13,6 +13,7 @@ public class AfreecaBjDTO {
     private String bjId;
     private String bjNick;
     private String totalRank;
+    private int broadNo;
 
     public AfreecaBjDTO(String bjId, String bjNick, String totalRank) {
         this.bjId = bjId;
